@@ -1,0 +1,26 @@
+회원가입
+post : /auth/join 
+
+request data: 
+
+{ email,
+  nick,
+  password,
+  gender,
+  age,
+  height,
+  weight,
+          } 
+------------------------------------------------------
+로그인 
+post : /auth/login 
+
+request data: 
+
+{ email,
+  password
+           }
+--------------------------------------------------------
+로그아웃
+get: /auth/logout
+

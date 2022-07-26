@@ -7,8 +7,12 @@ const session = require('express-session');
 const dotenv = require('dotenv');
 
 dotenv.config();
+const authRouter = require('./routes/auth');
+
 const { sequelize } = require('./models');
+const passportConfig = require('./passport');
 const app = express();
+passportConfig();
 app.set('port', process.env.PORT || 8002);
 sequelize.sync({ force: false })
   .then(() => {
@@ -31,16 +35,20 @@ app.use(session({
     secure: false,
   },
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
+app.use('/auth', authRouter);
 
 app.use((req, res, next) => {
+ 
   const error =  new Error((`${req.method} There are no ${req.url} router.`));
   error.status = 404;
   next(error);
 });
 
 app.use((err, req, res, next) => {
-  
+  console.error(err)
   error = process.env.NODE_ENV !== 'production' ? err : {};
   res.status(err.status || 500);
   res.end(error.message);
