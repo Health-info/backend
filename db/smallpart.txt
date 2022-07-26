@@ -1,0 +1,13 @@
+id:
+    type: integer
+    primary key
+
+BigpartId:
+
+  Bigpart 의 id 의 foreign key
+
+name:
+    type: String(30),
+    allowNull: false
+    unique: true
+

@@ -1,0 +1,19 @@
+id:
+    type: integer
+    primary key
+
+UserId:
+    User 의 id  foreign key
+
+ExerciseId:
+   Exercise 의 id foreign key
+   
+content:
+    type: String(200),
+    allowNull: false,
+
+createdAt
+    type: Date
+
+updatedAt
+    type: Date

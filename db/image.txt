@@ -1,0 +1,11 @@
+id:
+    type: integer
+    primary key
+
+ExerciseId:
+  Exercise 의 id 의 foreign key
+
+src:
+  type: String(100)
+  unique: true
+  allowNull: false

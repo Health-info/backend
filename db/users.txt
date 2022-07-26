@@ -1,0 +1,33 @@
+users table
+
+id : 
+        type: Integer  
+         primary key
+email: 
+         type: String(40) 
+         allowNull : false ,
+         unique: true,
+nick:
+      type: String(20),
+      allowNull: false,
+password: 
+      type: String(100),
+      allowNull: false,
+gender:
+      type: bool 
+      allowNull: false
+age:
+      type: unsigned integer
+      allowNull: false
+height:
+      type: unsigned integer
+      allowNull: false
+weight:
+      type: unsigned integer
+      allowNull: false
+
+createdAt
+      type: Date
+
+updatedAt
+   type: Date
