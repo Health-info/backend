@@ -21,7 +21,10 @@ module.exports = class Comment extends Sequelize.Model {
 
   static associate(db) {
     db.Comment.belongsTo(db.User);
-    db.Comment.belongsToMany(db.User, { through: 'UserLikeComment' });
+    db.Comment.belongsToMany(db.User, {
+      as: 'Likers',
+      through: 'UserLikeComment',
+    });
     db.Comment.belongsTo(db.Exercise);
   }
 };

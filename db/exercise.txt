@@ -10,3 +10,6 @@ name:
     allowNull: false,
     unique: true ,
 
+description:
+    type: String(50),
+    allowNull: false,

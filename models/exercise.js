@@ -8,12 +8,16 @@ module.exports = class Exercise extends Sequelize.Model {
         allowNull: false,
         unique: true,
       },
+      description: {
+        type: Sequelize.STRING(50),
+        allowNull: false,
+      }
     }, {
       sequelize,
       timestamps: false,
       underscored: false,
-      modelName: 'Bigpart',
-      tableName: 'bigparts',
+      modelName: 'Exercise',
+      tableName: 'exercises',
       paranoid: false,
       charset: 'utf8',
       collate: 'utf8_general_ci',

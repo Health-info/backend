@@ -3,24 +3,153 @@ post : /auth/join
 
 request data: 
 
-{ email,
-  nick,
-  password,
-  gender,
-  age,
-  height,
-  weight,
-          } 
+{ 
+    email,
+    nick,
+    password,
+    gender,
+    age,
+    height,
+    weight,
+} 
+
+response data
+1. 이미 존재하는 이메일 일 경우
+{ message: "Email that exists" }
+2. 회원가입 성공 
+{ message: "Register success" }
 ------------------------------------------------------
 로그인 
 post : /auth/login 
 
 request data: 
 
-{ email,
-  password
-           }
+{ 
+    email,
+    password
+}
+
+response data
+1. 존재하지 않는 이메일 일 경우
+{ message: 'Non-registered-user' }
+2. 존재하는 이메일 이지만 비밀번호가 틀릴 경우 
+{ message: 'Wrong password.' }
+3.로그인 성공 시 
+{ message: 'Login success'}
 --------------------------------------------------------
 로그아웃
 get: /auth/logout
 
+response data
+1. 로그아웃 성공시 
+{ message: 'Logout success' }
+--------------------------------------------------------
+
+
+get: /part
+
+response data
+{ code: 200,
+  payload: bigparts,
+}
+
+등 으로 사용 가능  
+------------------------------------------------------
+post: /exercise
+
+request data 
+{
+  id,
+}
+
+id 는 Smallpart 의 id 
+
+1. Smallpart 의 Exercises 를 성공적으로 가져올때.
+    
+    response data
+    
+    { 
+    code: 200,
+    payload: Exercises,
+    }
+
+2. 해당되는 Smallpart 가 없을 대 
+
+  response data
+  {message: 'no such smallpart user'}
+
+--------------------------------------------------
+
+get: /video/:id 
+
+id 는 Exercise 의 id 
+
+1. 성공
+{
+        code: 200,
+        payload: Videos
+}
+
+2. 실패 
+
+{message: 'no such Exercise'}
+--------------------------------------
+get: /image/:id 
+
+id 는 Exercise 의 id 
+
+1. 성공
+{
+        code: 200,
+        payload: Images
+}
+
+2. 실패 
+
+{message: 'no such Exercise'}
+
+------------------------------------------
+get: /comment/:id 
+
+id 는 Exercise 의 id 
+
+1. 성공
+{
+        code: 200,
+        payload: Comments
+}
+
+
+2. 실패 
+
+{message: 'no such Exercise'}
+---------------------------------------
+get: /comment/:id/like
+
+id 는 comment 의 id
+1. 성공
+{
+  code: 200,
+  message: "Like success",
+}
+
+2. 실패 
+
+{message: 'no such comment'}
+
+
+--------------------------------------------------
+
+
+get: /comment/:id/unlike
+
+id 는 comment 의 id
+1. 성공
+{
+  code: 200,
+  message: "unliike success",
+}
+
+2. 실패 
+
+{message: 'no such comment'}

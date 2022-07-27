@@ -8,8 +8,13 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 const authRouter = require('./routes/auth');
+const partRouter = require('./routes/part');
+const exerciseRouter = require('./routes/exercise');
+const imageRouter = require('./routes/image');
+const videoRouter = require('./routes/video');
+const commentRouter = require('./routes/comment');
 
-const { sequelize } = require('./models');
+const { sequelize, Exercise } = require('./models');
 const passportConfig = require('./passport');
 const app = express();
 passportConfig();
@@ -38,7 +43,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
+
 app.use('/auth', authRouter);
+app.use('/part', partRouter);
+app.use('/exercise', exerciseRouter);;
+app.use('/image', imageRouter);
+app.use('/video', videoRouter);
+app.use('/comment', commentRouter);
 
 app.use((req, res, next) => {
  
