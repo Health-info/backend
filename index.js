@@ -7,6 +7,8 @@ const hpp = require('hpp');
 const morgan = require('morgan');
 const session = require('express-session');
 const logger = require('./logger.js');
+const { swaggerUi, specs } = require('./swagger/swagger');
+
 
 const dotenv = require('dotenv');
 
@@ -92,7 +94,7 @@ if(process.env.NODE_ENV === 'production'){
   app.use(morgan('dev'));
 }  
 
-app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -101,9 +103,12 @@ app.use(session(sessionOption));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs))
+
 app.use('/auth', authRouter);
 app.use(require('./routes/middlewares').isLoggedIn);
 app.use('/v1', v1);
+
 
 
 
