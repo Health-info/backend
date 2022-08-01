@@ -129,10 +129,13 @@ router.post('/comment', async (req, res, next) => {
   try {
       const exercise = await Exercise.findOne({ where: {id: req.body.ExerciseId}});
       if(exercise){
-        await exercise.addComments({
+        
+        const comment = await Comment.create({
           UserId: req.user.id,
-          content: sanitizetHtml(req.body.content)
-        });
+          ExerciseId: req.body.ExerciseId,
+          content: req.body.content
+        })
+        await exercise.addComments([comment]);
         res.status(200).json({
           code: 200,
           message: 'Comment register success',
@@ -196,11 +199,8 @@ router.post('/comment/unlike', async (req, res, next) => {
         if(comment){
             const user = await User.findOne({ where: { id: req.user.id } });
             if (user) {
-            await user.removeLikings({
-              where: {
-                CommentId: req.body.CommentId
-              }
-            });
+
+            await user.removeLikings([comment]);
             res.status(200).json({
                 code: 200,
                 message: "unLike success",
