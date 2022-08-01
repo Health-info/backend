@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+운동종류.txt
+checklist.txt
+combined.txt
+error.log

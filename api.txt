@@ -2,7 +2,6 @@
 post : /auth/join 
 
 request data: 
-
 { 
     email,
     nick,
@@ -12,12 +11,16 @@ request data:
     height,
     weight,
 } 
-
 response data
-1. 이미 존재하는 이메일 일 경우
+0. 로그인을 한 상태에서 회원가입을 하려는 경우(403)
+{ message: 'Logout required' }
+1. 이미 존재하는 이메일 일 경우 (403)
 { message: "Email that exists" }
-2. 회원가입 성공 
+2. 회원가입 성공 (200)
 { message: "Register success" }
+
+
+
 ------------------------------------------------------
 로그인 
 post : /auth/login 
@@ -30,17 +33,21 @@ request data:
 }
 
 response data
-1. 존재하지 않는 이메일 일 경우
+0. 로그인 한 상태에서 로그인 하려는 경우 (403)
+{ message: 'Logout required' }
+1. 존재하지 않는 이메일 일 경우(403)
 { message: 'Non-registered-user' }
-2. 존재하는 이메일 이지만 비밀번호가 틀릴 경우 
+2. 존재하는 이메일 이지만 비밀번호가 틀릴 경우 (403)
 { message: 'Wrong password.' }
-3.로그인 성공 시 
+3.로그인 성공 시 (200)
 { message: 'Login success'}
 --------------------------------------------------------
 로그아웃
 get: /auth/logout
 
 response data
+0. 로그아웃 되어있는 상태에서 로그아웃 하려는 경우(403)
+{ message: "Login required" }
 1. 로그아웃 성공시 
 { message: 'Logout success' }
 --------------------------------------------------------
@@ -48,13 +55,26 @@ response data
 
 get: /part
 
-response data
+response data(200)
 { code: 200,
   payload: bigparts,
 }
 
-등 으로 사용 가능  
+
 ------------------------------------------------------
+post: /smallpart
+
+request data 
+{
+  BigpartId
+}
+
+response data
+{
+  code: 200,
+  payload: smallpars
+}
+-------------------------------------------------------------
 post: /exercise
 
 request data 
