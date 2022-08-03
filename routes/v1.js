@@ -1,6 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const cors = require('cors');
+
 const url = require('url');
 const path = require("path");
 const sanitizetHtml = require('sanitize-html');
@@ -14,16 +14,7 @@ const router = express.Router();
 
 
 
-router.use(async (req, res, next) => {
-  if (req.user) {
-    cors({
-      origin: req.get('origin'),
-      credentials: true,
-    })(req, res, next);
-  } else {
-    next();
-  }
-});
+
 router.use(isLoggedIn, express.static(path.join(__dirname, '/../public')));
 /**
  * @swagger

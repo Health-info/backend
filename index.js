@@ -7,6 +7,7 @@ const hpp = require('hpp');
 const morgan = require('morgan');
 const session = require('express-session');
 const logger = require('./logger.js');
+const cors = require('cors');
 const { swaggerUi, specs } = require('./swagger/swagger');
 
 
@@ -71,6 +72,16 @@ sequelize.sync({ force: true })
     console.error(err);
   });
 
+  router.use(async (req, res, next) => {
+    if (req.user) {
+      cors({
+        origin: req.get('origin'),
+        credentials: true,
+      })(req, res, next);
+    } else {
+      next();
+    }
+  });
 
 const sessionOption =  {
   resave: false,
