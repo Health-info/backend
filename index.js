@@ -72,7 +72,9 @@ sequelize.sync({ force: true })
     console.error(err);
   });
 
-  router.use((req, res, next) => { cors({origin: req.get('origin'), credentials: true}); next(); }
+  app.use((req, res, next) => {
+  
+    cors({origin: true, credentials: true}); next();}
   );
 
 const sessionOption =  {
