@@ -73,15 +73,14 @@ sequelize.sync({ force: true })
   });
 
   router.use(async (req, res, next) => {
-    if (req.user) {
-      cors({
-        origin: req.get('origin'),
-        credentials: true,
-      })(req, res, next);
-    } else {
+    
+    cors({
+      origin: req.get('origin'),
+      credentials: true,
+      });
       next();
     }
-  });
+  );
 
 const sessionOption =  {
   resave: false,
