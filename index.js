@@ -74,7 +74,7 @@ sequelize.sync({ force: true })
 
   app.use((req, res, next) => {
   
-    cors({origin: true, credentials: true}); next();}
+    cors({origin: true, credentials: true})}
   );
 
 const sessionOption =  {
