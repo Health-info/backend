@@ -10,7 +10,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://18.234.241.52", // 요청 URL
+        url: "http://54.180.124.62", // 요청 URL
       },
     ],
   },
