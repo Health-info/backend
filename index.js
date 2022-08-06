@@ -72,7 +72,7 @@ sequelize.sync({ force: true })
     console.error(err);
   });
 
-  app.use(cors({origin: true, credentials: true}));
+app.use(cors({origin: true, credentials: true}));
 
 const sessionOption =  {
   resave: false,

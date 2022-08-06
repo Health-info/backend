@@ -24,3 +24,15 @@
 {"level":"error","status":404}
 {"level":"error","status":404}
 {"body":"{\r\n  \"email\": \"dd@dd\",\r\n  \"password\": \"1234345\",\r\n}","expose":true,"level":"error","status":400,"statusCode":400,"type":"entity.parse.failed"}
+{"level":"error"}
+{"errors":[{"instance":{"createdAt":"2022-08-06T09:44:47.185Z","id":null,"nick":"혁진","provider":"kakao","snsId":2377412204,"updatedAt":"2022-08-06T09:44:47.185Z"},"message":"User.email cannot be null","origin":"CORE","path":"email","type":"notNull Violation","validatorArgs":[],"validatorKey":"is_null","validatorName":null,"value":null},{"instance":{"createdAt":"2022-08-06T09:44:47.185Z","id":null,"nick":"혁진","provider":"kakao","snsId":2377412204,"updatedAt":"2022-08-06T09:44:47.185Z"},"message":"User.gender cannot be null","origin":"CORE","path":"gender","type":"notNull Violation","validatorArgs":[],"validatorKey":"is_null","validatorName":null,"value":null},{"instance":{"createdAt":"2022-08-06T09:44:47.185Z","id":null,"nick":"혁진","provider":"kakao","snsId":2377412204,"updatedAt":"2022-08-06T09:44:47.185Z"},"message":"User.age cannot be null","origin":"CORE","path":"age","type":"notNull Violation","validatorArgs":[],"validatorKey":"is_null","validatorName":null,"value":null},{"instance":{"createdAt":"2022-08-06T09:44:47.185Z","id":null,"nick":"혁진","provider":"kakao","snsId":2377412204,"updatedAt":"2022-08-06T09:44:47.185Z"},"message":"User.height cannot be null","origin":"CORE","path":"height","type":"notNull Violation","validatorArgs":[],"validatorKey":"is_null","validatorName":null,"value":null},{"instance":{"createdAt":"2022-08-06T09:44:47.185Z","id":null,"nick":"혁진","provider":"kakao","snsId":2377412204,"updatedAt":"2022-08-06T09:44:47.185Z"},"message":"User.weight cannot be null","origin":"CORE","path":"weight","type":"notNull Violation","validatorArgs":[],"validatorKey":"is_null","validatorName":null,"value":null}],"level":"error","name":"SequelizeValidationError"}
+{"errors":[{"instance":{"createdAt":"2022-08-06T09:45:33.156Z","id":null,"nick":"혁진","provider":"kakao","snsId":2377412204,"updatedAt":"2022-08-06T09:45:33.156Z"},"message":"User.email cannot be null","origin":"CORE","path":"email","type":"notNull Violation","validatorArgs":[],"validatorKey":"is_null","validatorName":null,"value":null}],"level":"error","name":"SequelizeValidationError"}
+{"errors":[{"instance":{"createdAt":"2022-08-06T09:46:06.446Z","id":null,"nick":"혁진","provider":"kakao","snsId":2377412204,"updatedAt":"2022-08-06T09:46:06.446Z"},"message":"User.email cannot be null","origin":"CORE","path":"email","type":"notNull Violation","validatorArgs":[],"validatorKey":"is_null","validatorName":null,"value":null}],"level":"error","name":"SequelizeValidationError"}
+{"level":"error","status":404}
+{"level":"error","status":404}
+{"level":"error","status":404}
+{"level":"error","status":404}
+{"level":"error","status":404}
+{"level":"error","status":404}
+{"level":"error","status":404}
+{"code":"invalid_grant","level":"error","message":"authorization code not found for code=xxcRxLkFTd7k9h094HL2s2pahuegKr4fg9tet4zkfH2R7Xqr7kPBCUPvqIJB9wEr2fS36QopcBQAAAGCcpRCbw","name":"TokenError","status":500}

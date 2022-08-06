@@ -12,19 +12,28 @@ nick:
       allowNull: false,
 password: 
       type: String(100),
-      allowNull: false,
+      allowNull: true,
 gender:
       type: bool 
-      allowNull: false
+      allowNull: true
 age:
       type: unsigned integer
-      allowNull: false
+      allowNull: true
 height:
       type: unsigned integer
-      allowNull: false
+      allowNull: true
 weight:
       type: unsigned integer
-      allowNull: false
+      allowNull: true
+
+provider:
+  type: STRING(10),
+  allowNull: false,
+  defaultValue: 'local'
+
+snsId: 
+  type: STRING(30)
+  allowNull: true
 
 createdAt
       type: Date

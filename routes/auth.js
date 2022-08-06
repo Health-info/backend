@@ -202,4 +202,14 @@ router.get('/logout', isLoggedIn, (req, res) => {
 
 });
 
+router.get('/kakao', passport.authenticate('kakao'));
+
+router.get('/kakao/callback', passport.authenticate('kakao', {
+  failureRedirect: '/',
+}), (req, res) => {
+  res.status(200).json({
+    message: 'Login success'
+  });
+});
+
 module.exports = router;
