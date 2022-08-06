@@ -202,13 +202,41 @@ router.get('/logout', isLoggedIn, (req, res) => {
 
 });
 
+/**
+ * @swagger
+ *
+ * /auth/kakao:
+ *  get:
+ *    summary: "카카오로 로그인"
+ *    description: "카카오 로그인을 한다"
+ *    tags: [Users]
+ *    responses:
+ *      "200":
+ *        description: 카카오 로그인 성공 여부에 따라 결과 값을 다릅니다.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                code:
+ *                  type: integer
+ *                  default: 200
+ *                message:
+ *                  type: string
+ *                  default: "Login success"
+ *                payload:
+ *                  type: object,
+ *                  example: {"id":1,"email":"khjmimi@naver.com","nick":"혁진","snsId":2377412204,"provider":"kakao","gender":true,"updatedAt":"2022-08-06T10:38:40.259Z","createdAt":"2022-08-06T10:38:40.259Z"}
+ */
+
 router.get('/kakao', passport.authenticate('kakao'));
 
 router.get('/kakao/callback', passport.authenticate('kakao', {
   failureRedirect: '/',
 }), (req, res) => {
   res.status(200).json({
-    message: 'Login success'
+    message: 'Login success',
+    payload: req.user
   });
 });
 

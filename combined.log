@@ -36,3 +36,4 @@
 {"level":"error","status":404}
 {"level":"error","status":404}
 {"code":"invalid_grant","level":"error","message":"authorization code not found for code=xxcRxLkFTd7k9h094HL2s2pahuegKr4fg9tet4zkfH2R7Xqr7kPBCUPvqIJB9wEr2fS36QopcBQAAAGCcpRCbw","name":"TokenError","status":500}
+{"level":"error","status":404}
