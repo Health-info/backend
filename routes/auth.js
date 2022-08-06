@@ -15,7 +15,7 @@ const router = express.Router();
  *    description: "POST 방식으로 유저를 등록한다."
  *    tags: [Users]
  *    requestBody:
- *      description: 사용자가 서버로 전달하는 값에 따라 결과 값은 다릅니다. (유저 등록)
+ *      description: 회원가입 성공시 응답 데이터는 없습니다. 성공 이후에는 '/' 로 리다이렉트 됩니다.
  *      required: true
  *      content:
  *        application/json:
@@ -54,20 +54,6 @@ const router = express.Router();
  *                description: "유저 키"
  *                required: true
  *                default: 179
- *    responses:
- *      "200":
- *        description: 사용자가 서버로 전달하는 값에 따라 결과 값은 다릅니다. (유저 등록)
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                code:
- *                  type: integer
- *                  default: 200
- *                message:
- *                  type: string
- *                  default: "Register success"
  */
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
@@ -98,9 +84,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
       height,
       weight,
     });
-    return res.status(200).json({
-      message: "Register success"
-    });
+    return res.status(200).redirect('/');
   } catch (error) {
     console.error(error);
     return next(error);
@@ -116,7 +100,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
  *    description: "POST 방식으로 로그인 한다."
  *    tags: [Users]
  *    requestBody:
- *      description: 사용자가 서버로 전달하는 값에 따라 결과 값은 다릅니다. (유저 로그인)
+ *      description: 로그인 성공의 응답데이터는 없습니다. 로그인 성공시 '/' 로 redirect 됩니다.
  *      required: true
  *      content:
  *        application/json:
@@ -131,20 +115,6 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
  *                type: string
  *                description: "유저 비밀번호"
  *                required: true
- *    responses:
- *      "200":
- *        description: 사용자가 서버로 전달하는 값에 따라 결과 값은 다릅니다. (유저 등록)
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                code:
- *                  type: integer
- *                  default: 200
- *                message:
- *                  type: string
- *                  default: "Login success"
  */
 
 router.post('/login', isNotLoggedIn, (req, res, next) => {
@@ -161,9 +131,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
         console.error(loginError);
         return next(loginError);
       }
-      return res.status(200).json({
-        message: 'Login success'
-      });
+      return res.status(200).redirect('/');
     });
   })(req, res, next); // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
 });
@@ -173,31 +141,15 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
  * /auth/logout:
  *  get:
  *    summary: "유저 로그아웃"
- *    description: "GET 방식으로 로그아웃 한다."
+ *    description: 로그아웃 성공시의 응답 데이터는 없습니다. 로그아웃 성공시 '/' 로 redirect 됩니다.
  *    tags: [Users]
- *    responses:
- *      "200":
- *        description: 로그아웃 성공 시
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                code:
- *                  type: integer
- *                  default: 200
- *                message:
- *                  type: string
- *                  default: "Logout success"
  */
 router.get('/logout', isLoggedIn, (req, res) => {
 
   req.logout(function(err) {
     if (err) { return next(err); }
     req.session.destroy();
-    res.status(200).json({
-      message: 'Logout success'
-    });
+    res.status(200).redirect('/');
   });
 
 });
@@ -208,25 +160,8 @@ router.get('/logout', isLoggedIn, (req, res) => {
  * /auth/kakao:
  *  get:
  *    summary: "카카오로 로그인"
- *    description: "카카오 로그인을 한다"
+ *    description: 로그인 성공시 '/' 로 redirect 됩니다. 여기서는 확인 불가합니다.
  *    tags: [Users]
- *    responses:
- *      "200":
- *        description: 카카오 로그인 성공 여부에 따라 결과 값을 다릅니다.
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                code:
- *                  type: integer
- *                  default: 200
- *                message:
- *                  type: string
- *                  default: "Login success"
- *                payload:
- *                  type: object,
- *                  example: {"id":1,"email":"khjmimi@naver.com","nick":"혁진","snsId":2377412204,"provider":"kakao","gender":true,"updatedAt":"2022-08-06T10:38:40.259Z","createdAt":"2022-08-06T10:38:40.259Z"}
  */
 
 router.get('/kakao', passport.authenticate('kakao'));
@@ -234,10 +169,7 @@ router.get('/kakao', passport.authenticate('kakao'));
 router.get('/kakao/callback', passport.authenticate('kakao', {
   failureRedirect: '/',
 }), (req, res) => {
-  res.status(200).json({
-    message: 'Login success',
-    payload: req.user
-  });
+  res.redirect('/');
 });
 
 module.exports = router;
